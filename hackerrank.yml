@@ -1,0 +1,14 @@
+version: 1.0
+configuration:
+  has_webserver: true
+  scoring:
+    command: "rm -rf unit.xml; pip install --user -r requirements.txt && python manage.py makemigrations && python manage.py migrate --run-syncdb && python manage.py test"
+    files:
+      - unit.xml
+  ide_config:
+    default_open_files:
+      - SUB_MODULE/models.py
+    project_menu:
+      run: python manage.py makemigrations && python manage.py migrate --run-syncdb && python manage.py runserver 0.0.0.0:8000
+      install: pip install --user -r requirements.txt
+      test: rm -rf unit.xml; python manage.py makemigrations && python manage.py migrate --run-syncdb && python manage.py test --keepdb
